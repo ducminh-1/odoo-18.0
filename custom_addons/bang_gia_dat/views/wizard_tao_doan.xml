@@ -1,0 +1,23 @@
+<odoo>
+    <record id="view_form_wizard_tao_doan_moi" model="ir.ui.view">
+        <field name="name">wizard.tao.doan.moi.form</field>
+        <field name="model">wizard.tao.doan.moi</field>
+        <field name="arch" type="xml">
+            <form string="Tạo đoạn mới từ đoạn cũ">
+                <group>
+                    <field name="doan_cu_ids" widget="many2many_tags" domain="[('id', '!=', False)]"/>
+                    <field name="name"/>
+                    <field name="duong_id"/>
+                    <field name="diem_dau"/>
+                    <field name="diem_cuoi"/>
+                    <field name="ghi_chu_chinh_sua"/>
+                </group>
+                <footer>
+                    <button string="Tạo mới" type="object" name="tao_doan_moi" class="btn-primary"/>
+                    <button string="Hủy" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
+

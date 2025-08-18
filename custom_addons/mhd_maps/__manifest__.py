@@ -17,7 +17,7 @@ Thêm chế độ xem bản đồ cho Datalist
     'website': '',
     'data': [
         'views/mhd_datalist_maps.xml',
-        'views/project.xml',
+        # 'views/project.xml',
         # 'views/res_partner.xml',
     ],
     'demo': [],

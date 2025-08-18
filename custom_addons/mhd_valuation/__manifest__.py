@@ -20,7 +20,7 @@
     "data": [
         'security/ir.model.access.csv',
         'security/mhd_security.xml',
-        'views/templates.xml',
+        # 'views/templates.xml',
         'views/datalist.xml',
         'views/res_partner_views.xml',
         'views/cau_hinh.xml',
@@ -33,15 +33,15 @@
         'report/real_estate_draft.xml',
         'report/data_list.xml',
         'views/project.xml',
-        # 'views/thanhtoan.xml',
-        # 'wizard/tao_hop_dong.xml',
-        # 'wizard/tao_chung_thu.xml',
+        'views/thanhtoan.xml',
+        'wizard/tao_hop_dong.xml',
+        'wizard/tao_chung_thu.xml',
     ],
     'assets': {
         'web.assets_backend': [
-            'mhd_valuation/static/src/js/nhap_so.js',
-            'mhd_valuation/static/src/js/section_and_note_fields_backend.js'
-        ]
+            # 'mhd_valuation/static/src/js/nhap_so.js',
+            # 'mhd_valuation/static/src/js/section_and_note_fields_backend.js'
+        ],
     },
     "author": "Mr Ánh",
     "website": "https://sinhvienthamdinh.com",

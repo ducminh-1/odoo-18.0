@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+         <!--  Partners inherited form -->
+        <record id="view_crm_quotation_form" model="ir.ui.view">
+            <field name="name">crm.quotation.form.view</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='internal_notes']" position="before">
+                    <page string="Thư chào giá">
+                        <group>
+                            <!-- Add your new fields here -->
+                            <field name="quotation_date"/>
+                            <field name="hide_quotation_date"/>
+                            <field name="quotation_assets" placeholder="Nhập ngắn gọn tài sản, nếu có danh mục thì bổ sung mục danh mục"/>
+                            <field name="time_of_valuation" placeholder="Tháng 01/2023"/>
+                            <field name="area_of_valuation" placeholder="Thành phố Hồ Chí Minh"/>
+                            <field name="quotation_purpose" placeholder="Tham khảo giá trị thị trường"/>
+                            <field name="valuation_fee_number" placeholder="Phí bằng số"/>
+                            <field name="valuation_fee_text" placeholder="(Bằng chữ: Sáu trăm sáu mươi triệu đồng)"/>
+                            <field name="valuation_fee_vat" placeholder="Mức phí trên đã bao gồm VAT"/>
+                            <field name="pay"/>
+                            <field name="execution_time" placeholder="15 ngày làm việc (Kể từ khi hoàn thành khảo sát hiện trạng tài sản)"/>
+                            <field name="person_support" placeholder="Liên hệ 0909.630.504 để được tư vấn, hỗ trợ"/>
+                            <field name="signer" placeholder="TRẦN KHÁNH DU"/>
+                            <field name="signer_position" placeholder="Giám đốc"/>
+                            <field name="list_assets" placeholder="Nhập bổ sung danh mục tài sản nếu ở trên mô tả chưa đầy đủ"/>
+                            <field name="hide_list_assets"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+       </record>
+</odoo>

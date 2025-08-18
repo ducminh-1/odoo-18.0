@@ -1,0 +1,123 @@
+<odoo>
+    <record id="view_form_thua_dat" model="ir.ui.view">
+        <field name="name">thua.dat.form</field>
+        <field name="model">thua.dat</field>
+        <field name="arch" type="xml">
+            <form string="Thửa đất">
+                <group>
+                    <field name="nguoi_nhap_lieu" groups="bang_gia_dat.group_giao_viec"/>
+                    <field name="so_thua" readonly="1"/>
+                    <field name="so_to" readonly="1"/>
+                    <field name="xa_phuong" readonly="1"/>
+                    <field name="quan_huyen" readonly="1"/>
+                    <field name="xa_phuong_moi_id" readonly="1"/>
+                    <field name="tinh_thanh_moi_id" readonly="1"/>
+                    <field name="loai_dat" readonly="1"/>
+                    <field name="dien_tich_dat"  readonly="1"/>
+                    <field name="gia_nnt_khai_tong"  readonly="1"/>
+                    <field name="duong_id" options="{'no_create': True}"/>
+                    <field name="doan_duong"/>
+                    <field name="diem_dau"/>
+                    <field name="diem_cuoi"/>
+                    <field name="mat_tien_hem_id" options="{'no_create': True}"/>
+                    <field name="do_rong_hem_id" options="{'no_create': True}"/>
+                    <field name="chieu_sau_id" options="{'no_create': True}"/>
+                    <field name="ket_cau_duong_id" options="{'no_create': True}"/>
+                    <field name="khu_vuc_id" options="{'no_create': True}"/>
+                    <field name="vi_tri_id" options="{'no_create': True}"/>
+                    <field name="da_xac_nhan"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_thua_dat" model="ir.ui.view">
+        <field name="name">thua.dat.tree</field>
+        <field name="model">thua.dat</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom" string="Danh sách Thửa đất" create="0" multi_edit="1">
+                <field name="nguoi_nhap_lieu" groups="bang_gia_dat.group_giao_viec"/>
+                <field name="so_thua" readonly="1"/>
+                <field name="so_to" readonly="1"/>
+                <field name="xa_phuong" readonly="1"/>
+                <field name="thoi_diem" readonly="1"/>
+                <field name="quan_huyen" optional="hide" readonly="1"/>
+                <field name="xa_phuong_moi_id" optional="hide" readonly="1"/>
+                <field name="tinh_thanh_moi_id" optional="hide" readonly="1"/>
+                <field name="loai_dat"  readonly="1" optional="hide"/>
+                <field name="dien_tich_dat"  readonly="1"/>
+                <field name="gia_nnt_khai_tong"  readonly="1"/>
+                <field name="duong_id" domain="[('quan_huyen_id', '=?', quan_huyen)]" options="{'no_open': True, 'no_create': True}"/>
+                <field name="doan_duong" optional="hide"/>
+                <field name="diem_dau" optional="hide"/>
+                <field name="diem_cuoi" optional="hide"/>
+                <field name="mat_tien_hem_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="do_rong_hem_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="chieu_sau_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="ket_cau_duong_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="khu_vuc_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="vi_tri_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="note" optional="show"/>
+                <field name="da_xac_nhan" optional="hide"/>
+                <field name="he_so_so_sanh" optional="hide" avg="Hệ số bình quân"/>
+
+                <!-- Nút xác nhận -->
+                <button name="action_xac_nhan"
+                        type="object"
+                        string="Gửi"
+                        icon="fa-check"
+                        class="btn btn-info btn-sm"
+                        attrs="{'invisible': [('da_xac_nhan', '=', True)]}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_search_thua_dat" model="ir.ui.view">
+        <field name="name">thua.dat.search</field>
+        <field name="model">thua.dat</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm thửa đất">
+                 <!-- Bộ lọc cho Người giao việc -->
+                <filter name="chua_phan_cong" string="Chưa phân công"
+                        domain="[('nguoi_nhap_lieu','=',False)]"
+                        groups="bang_gia_dat.group_giao_viec"/>
+                <!-- Bộ lọc cho Người nhập liệu -->
+                <filter name="chua_xac_nhan" string="Chưa xác nhận"
+                        domain="[('da_xac_nhan','=',False)]"
+                        groups="bang_gia_dat.group_nhap_lieu"/>
+                <field name="so_thua"/>
+                <field name="xa_phuong"/>
+                <field name="duong_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_thua_dat" model="ir.actions.act_window">
+        <field name="name">Thửa đất</field>
+        <field name="res_model">thua.dat</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="search_view_id" ref="view_search_thua_dat"/>
+        <field name="context">
+            {
+                'search_default_chua_phan_cong': 1
+            }
+        </field>
+        <field name="groups_id" eval="[(4, ref('bang_gia_dat.group_giao_viec'))]"/>
+    </record>
+    <record id="action_thua_dat_nhaplieu" model="ir.actions.act_window">
+        <field name="name">Nhập liệu</field>
+        <field name="res_model">thua.dat</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_search_thua_dat"/>
+        <field name="context">
+            {
+                'search_default_chua_xac_nhan': 1
+            }
+        </field>
+        <field name="groups_id" eval="[(4, ref('bang_gia_dat.group_nhap_lieu'))]"/>
+    </record>
+
+    <menuitem id="menu_root" name="Quản lý đất"/>
+    <menuitem id="menu_thua_dat" name="Thửa đất" parent="menu_duong_root" action="action_thua_dat" groups="bang_gia_dat.group_giao_viec"/>
+    <menuitem id="menu_thua_dat_nhaplieu" name="Nhập liệu" parent="menu_duong_root" action="action_thua_dat_nhaplieu" groups="bang_gia_dat.group_nhap_lieu"/>
+</odoo>

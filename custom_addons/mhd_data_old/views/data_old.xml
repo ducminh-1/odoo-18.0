@@ -61,7 +61,7 @@
             <field name="name">mhd.data.old.tree.view</field>
             <field name="model">mhd.data.old</field>
             <field name="arch" type="xml">
-                <tree string="Data" create="1" multi_edit="1">
+                <list string="Data" create="1" multi_edit="1">
                     <field name="name" optional="show"/>
                     <field name="vitri" optional="show"/>
                     <field name="huong" optional="hide"/>
@@ -73,7 +73,7 @@
                     <field name="sochungthu" optional="show"/>
                     <field name="customer_longitude" optional="show"/>
                     <field name="customer_latitude" optional="show"/>
-                </tree>
+                </list>
             </field>
     </record>
     # ----------------------------------------
@@ -106,25 +106,23 @@
                 <field name="customer_latitude"/>
                 <field name="customer_longitude"/>
                 <templates>
-                    <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_content">
-                            <div>
-                                <strong class="o_kanban_record_title"><span>Đơn giá: <field name="dongiadat"/> tr/m2 - Diện tích: <field name="dientichdat"/> m2</span></strong>
-                            </div>
-                            <div>
-                                <span class="o_kanban_record_subtitle"><field name="name"/></span>
-                            </div>
-                            <div>
-                                <span class="o_kanban_record_subtitle">Vị trí: <field name="vitri"/> - Hướng: <field name="huong"/> - Hình dáng: <field name="hinhdang"/></span>
-                            </div>
-                            <div>
-                                <span class="o_kanban_record_subtitle">Thời điểm thẩm định: <field name="thoidiemthamdinh"/></span>
-                            </div>
-                            <div>
-                                <span class="o_kanban_record_subtitle">Số chứng thư: <field name="sochungthu"/>/<field name="thoidiemthamdinh"/>/CT-MHD</span>
-                            </div>
+                    <div t-attf-class="oe_kanban_content">
+                        <div>
+                            <strong class="o_kanban_record_title"><span>Đơn giá: <field name="dongiadat"/> tr/m2 - Diện tích: <field name="dientichdat"/> m2</span></strong>
                         </div>
-                    </t>
+                        <div>
+                            <span class="o_kanban_record_subtitle"><field name="name"/></span>
+                        </div>
+                        <div>
+                            <span class="o_kanban_record_subtitle">Vị trí: <field name="vitri"/> - Hướng: <field name="huong"/> - Hình dáng: <field name="hinhdang"/></span>
+                        </div>
+                        <div>
+                            <span class="o_kanban_record_subtitle">Thời điểm thẩm định: <field name="thoidiemthamdinh"/></span>
+                        </div>
+                        <div>
+                            <span class="o_kanban_record_subtitle">Số chứng thư: <field name="sochungthu"/>/<field name="thoidiemthamdinh"/>/CT-MHD</span>
+                        </div>
+                    </div>
                 </templates>
             </google_map>
         </field>
@@ -143,7 +141,7 @@
         <field name="name">Data Old</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mhd.data.old</field>
-        <field name="view_mode">tree,form,google_map</field>
+        <field name="view_mode">list,form,google_map</field>
         <field name="context">{'search_default_nam_2021' : '2021', 'search_default_nam_2020' : '2020', 'search_default_nam_2019' : '2019'}</field>
 <!--        <field name="context">{}</field>-->
         <field name="help" type="html">

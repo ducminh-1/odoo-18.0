@@ -225,9 +225,6 @@
                             </group>
                         </page>
                     </notebook>
-                </sheet>
-
-                <sheet>
                     <notebook>
                         <page string="PHỤ CẤP" name="phucap">
                             <span colspan="4"><b>BÊN GIỚI THIỆU</b></span>
@@ -270,10 +267,9 @@
                     </notebook>
                 </sheet>
 
-                <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="message_ids"/>
-                </div>
+                <!-- <sheet> -->
+                <!-- </sheet> -->
+                <chatter/>
             </form>
         </field>
     </record>

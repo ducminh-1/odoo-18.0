@@ -8,13 +8,13 @@
 <!--            <xpath expr="//notebook/page[@name='order_lines']" position="after">-->
 <!--                <page string="Sơ bộ tài sản">-->
 <!--                    <field name="land_line" widget="section_and_note_one2many">-->
-<!--                        <tree editable="bottom">-->
+<!--                        <list editable="bottom">-->
 <!--                            <field name="dat_loaidat"/>-->
 <!--                            <field name="dat_quyhoach"/>-->
 <!--                            <field name="dat_dientich"/>-->
 <!--                            <field name="dat_dongia"/>-->
 <!--                            <field name="dat_subtotal"/>-->
-<!--                        </tree>-->
+<!--                        </list>-->
 <!--                    </field>-->
 <!--                </page>-->
 <!--            </xpath>-->

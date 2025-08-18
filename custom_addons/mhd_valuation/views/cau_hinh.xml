@@ -17,7 +17,7 @@
         <field name="name">Tên Chung cư</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mhd.vitri.chungcu</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="context">{}</field>
 <!--        <field name="context">{'search_default_responsible_id': 1}</field>-->
         <field name="help" type="html">
@@ -31,7 +31,7 @@
         <field name="name">Tên đường</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mhd.vitri.duong</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="context">{}</field>
 <!--        <field name="context">{'search_default_responsible_id': 1}</field>-->
         <field name="help" type="html">
@@ -45,7 +45,7 @@
         <field name="name">Tên phường</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mhd.vitri.phuong</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="context">{}</field>
 <!--        <field name="context">{'search_default_responsible_id': 1}</field>-->
         <field name="help" type="html">
@@ -59,7 +59,7 @@
         <field name="name">Tên Quận/ Huyện</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mhd.vitri.quan</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="context">{}</field>
 <!--        <field name="context">{'search_default_responsible_id': 1}</field>-->
         <field name="help" type="html">
@@ -73,7 +73,7 @@
         <field name="name">Tên Tỉnh/ TP</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mhd.vitri.tinh</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="context">{}</field>
 <!--        <field name="context">{'search_default_responsible_id': 1}</field>-->
         <field name="help" type="html">
@@ -87,7 +87,7 @@
         <field name="name">Nhóm khách hàng</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mhd.customer.groups</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="context">{}</field>
 <!--        <field name="context">{'search_default_responsible_id': 1}</field>-->
         <field name="help" type="html">
@@ -101,7 +101,7 @@
         <field name="name">Đối tượng khách hàng</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mhd.customer.name</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="context">{}</field>
 <!--        <field name="context">{'search_default_responsible_id': 1}</field>-->
         <field name="help" type="html">
@@ -115,7 +115,7 @@
         <field name="name">Phương pháp thẩm định</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mhd.phuongphap</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="context">{}</field>
 <!--        <field name="context">{'search_default_responsible_id': 1}</field>-->
         <field name="help" type="html">
@@ -129,7 +129,7 @@
         <field name="name">Mục đích thẩm định</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mhd.mucdichthamdinh</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="context">{}</field>
 <!--        <field name="context">{'search_default_responsible_id': 1}</field>-->
         <field name="help" type="html">
@@ -168,12 +168,12 @@
                                 <field name="mavung"/>
                             </group>
                         </group>
-                        <!-- <field name="vitri_quan">
-                            <tree editable="bottom">
+                        <field name="vitri_quan">
+                            <list editable="bottom">
                                 <field name="name"/>
                                 <field name="maquan"/>
-                            </tree>
-                        </field> -->
+                            </list>
+                        </field>
                 </sheet>
             </form>
         </field>
@@ -193,9 +193,9 @@
                     </div>
                         <group>
                             <field name="khachhang_name">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="name" placeholder="Tên Đối tượng khách hàng"/>
-                                </tree>
+                                </list>
                             </field>
                         </group>
                 </sheet>

@@ -1,0 +1,63 @@
+<odoo>
+    <record id="view_form_duong_giadat" model="ir.ui.view">
+        <field name="name">duong.giadat.form</field>
+        <field name="model">duong.giadat</field>
+        <field name="arch" type="xml">
+            <form string="Danh mục đường">
+                <header>
+                  <button name="action_open_wizard_tao_doan_moi" type="object"
+                          string="Tạo đoạn mới từ đoạn cũ" class="btn-primary"
+                          attrs="{'invisible': [('id', '=', False)]}" />
+                </header>
+                <sheet>
+                    <div class="oe_title pr-0">
+                        <h3 class="d-flex flex-row justify-content-between">
+                            <field name="name" class="o_task_name text-truncate" placeholder="Tên đường"/>
+                        </h3>
+                        <div class="o_row">
+                            <field name="doan_duong" readonly="1"/>
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="xa_phuong_ids" widget="many2many_tags"/>
+                            <field name="quan_huyen_id" options="{'no_create': True}"/>
+                            <field name="tinh_thanh_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="diem_dau"/>
+                            <field name="diem_cuoi"/>
+                            <field name="gia_dat_hien_huu"/>
+                            <field name="gia_dat_du_kien"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_duong_giadat" model="ir.ui.view">
+        <field name="name">duong.giadat.tree</field>
+        <field name="model">duong.giadat</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách đường">
+                <field name="name"/>
+                <field name="doan_duong"/>
+                <field name="xa_phuong_ids"/>
+                <field name="quan_huyen_id"/>
+                <field name="tinh_thanh_id"/>
+                <field name="gia_dat_hien_huu"/>
+                <field name="note" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_duong_giadat" model="ir.actions.act_window">
+        <field name="name">Danh mục đường</field>
+        <field name="res_model">duong.giadat</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_duong_root" name="Giá đất" web_icon="bang_gia_dat,static/description/icon.png"/>
+    <menuitem id="menu_duong_giadat" name="Danh mục đường" parent="menu_duong_root" action="action_duong_giadat"/>
+</odoo>

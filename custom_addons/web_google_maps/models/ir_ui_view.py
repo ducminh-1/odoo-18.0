@@ -1,90 +1,69 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3
 from odoo import fields, models
-from odoo.tools.view_validation import get_dict_asts
+from odoo.tools.view_validation import get_dict_asts, get_expression_field_names
+
 # from odoo.addons.base.models.ir_ui_view import transfer_field_to_modifiers
 
 
 class IrUiView(models.Model):
     _inherit = 'ir.ui.view'
 
-    # type = fields.Selection(selection_add=[('google_map', 'Google Maps')])
+    type = fields.Selection(selection_add=[('google_map', 'Google Maps')])
 
     # FIXME: this is a deep copy of the original method
     # added 'google_map' as the list of the built-in views to be validated are hardcoded :/
-    # def _postprocess_tag_field(self, node, name_manager, node_info):
-    #     if node.get('name'):
-    #         attrs = {'id': node.get('id'), 'select': node.get('select')}
-    #         field = name_manager.Model._fields.get(node.get('name'))
-    #         if field:
-    #             # apply groups (no tested)
-    #             if field.groups and not self.user_has_groups(
-    #                 groups=field.groups
-    #             ):
-    #                 node.getparent().remove(node)
-    #                 # no point processing view-level ``groups`` anymore, return
-    #                 return
-    #             node_info['editable'] = (
-    #                 node_info['editable']
-    #                 and field.is_editable()
-    #                 and (
-    #                     node.get('readonly') not in ('1', 'True')
-    #                     or get_dict_asts(node.get('attrs') or "{}")
-    #                 )
-    #             )
-    #             if name_manager.validate:
-    #                 name_manager.must_have_fields(
-    #                     self._get_field_domain_variables(
-    #                         node, field, node_info['editable']
-    #                     )
-    #                 )
-    #             views = {}
-    #             for child in node:
-    #                 if child.tag in (
-    #                     'form',
-    #                     'tree',
-    #                     'graph',
-    #                     'kanban',
-    #                     'calendar',
-    #                     'google_map',
-    #                 ):
-    #                     node.remove(child)
-    #                     xarch, sub_name_manager = self.with_context(
-    #                         base_model_name=name_manager.Model._name,
-    #                     )._postprocess_view(
-    #                         child,
-    #                         field.comodel_name,
-    #                         name_manager.validate,
-    #                         editable=node_info['editable'],
-    #                     )
-    #                     name_manager.must_have_fields(
-    #                         sub_name_manager.mandatory_parent_fields
-    #                     )
-    #                     views[child.tag] = {
-    #                         'arch': xarch,
-    #                         'fields': sub_name_manager.available_fields,
-    #                     }
-    #             attrs['views'] = views
-    #             if field.comodel_name in self.env:
-    #                 Comodel = self.env[field.comodel_name].sudo(False)
-    #                 node_info['attr_model'] = Comodel
-    #                 if field.type in ('many2one', 'many2many'):
-    #                     can_create = Comodel.check_access_rights(
-    #                         'create', raise_exception=False
-    #                     )
-    #                     can_write = Comodel.check_access_rights(
-    #                         'write', raise_exception=False
-    #                     )
-    #                     node.set(
-    #                         'can_create', 'true' if can_create else 'false'
-    #                     )
-    #                     node.set('can_write', 'true' if can_write else 'false')
+    def _postprocess_tag_field(self, node, name_manager, node_info):
+        name = node.get('name')
+        if not name:
+            return
 
-    #         name_manager.has_field(node.get('name'), attrs)
-    #         field = name_manager.fields_get.get(node.get('name'))
-    #         if field:
-    #             transfer_field_to_modifiers(field, node_info['modifiers'])
+        attrs = {'id': node.get('id'), 'select': node.get('select')}
+        field = name_manager.model._fields.get(name)
 
-    # def transfer_field_to_modifiers(field, modifiers, context=None):
-    #     modifiers.update(field.get('modifiers', {}))
-    #     return modifiers
+        if field:
+            if field.groups:
+                group_definitions = self.env['res.groups']._get_group_definitions()
+                node_info['model_groups'] &= group_definitions.parse(field.groups, raise_if_not_found=False)
+            if (
+                node_info.get('view_type') == 'form'
+                and field.type in ('one2many', 'many2many')
+                and not node.get('widget')
+                and node.get('invisible') not in ('1', 'True')
+                and not name_manager.parent
+            ):
+                # Embed kanban/list/form views for visible x2many fields in form views
+                # if no widget or the widget requires it.
+                # So the web client doesn't have to call `get_views` for x2many fields not embedding their view
+                # in the main form view.
+                for arch, _view in self._get_x2many_missing_view_archs(field, node, node_info):
+                    node.append(arch)
+
+            if field.relational:
+                domain = (
+                    node.get('domain')
+                    or node_info['editable'] and field._description_domain(self.env)
+                )
+                if isinstance(domain, str):
+                    vnames = get_expression_field_names(domain)
+                    name_manager.must_have_fields(node, vnames, node_info, ('domain', domain))
+            if field.type == 'properties':
+                name_manager.must_have_fields(node, [field.definition_record], node_info, ('fieldname', field.name))
+            context = node.get('context')
+            if context:
+                vnames = get_expression_field_names(context)
+                name_manager.must_have_fields(node, vnames, node_info, ('context', context))
+
+            for child in node:
+                if child.tag in ('form', 'list', 'graph', 'kanban', 'calendar', 'google_map'):
+                    node_info['children'] = []
+                    self._postprocess_view(child, field.comodel_name, editable=node_info['editable'], node_info=node_info)
+
+            if node_info['editable'] and field.type in ('many2one', 'many2many'):
+                node.set('model_access_rights', field.comodel_name)
+
+        name_manager.has_field(node, name, node_info, attrs)
+
+    def _get_view_info(self):
+        return {'google_map': {'icon': 'fa fa-map-marker'}} | super()._get_view_info()
+        

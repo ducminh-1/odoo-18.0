@@ -1,0 +1,162 @@
+<odoo>
+
+    <!-- Mặt tiền / Hẻm -->
+    <record id="view_tree_dm_mattienhem" model="ir.ui.view">
+        <field name="name">dm.mattienhem.tree</field>
+        <field name="model">dm.mattienhem</field>
+        <field name="arch" type="xml">
+            <tree><field name="name"/></tree>
+        </field>
+    </record>
+
+    <record id="view_form_dm_mattienhem" model="ir.ui.view">
+        <field name="name">dm.mattienhem.form</field>
+        <field name="model">dm.mattienhem</field>
+        <field name="arch" type="xml">
+            <form string="Mặt tiền / Hẻm">
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dm_mattienhem" model="ir.actions.act_window">
+        <field name="name">Mặt tiền / Hẻm</field>
+        <field name="res_model">dm.mattienhem</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Độ rộng hẻm -->
+    <record id="view_tree_dm_doronghem" model="ir.ui.view">
+        <field name="name">dm.doronghem.tree</field>
+        <field name="model">dm.doronghem</field>
+        <field name="arch" type="xml">
+            <tree><field name="name"/></tree>
+        </field>
+    </record>
+
+    <record id="view_form_dm_doronghem" model="ir.ui.view">
+        <field name="name">dm.doronghem.form</field>
+        <field name="model">dm.doronghem</field>
+        <field name="arch" type="xml">
+            <form string="Độ rộng hẻm">
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dm_doronghem" model="ir.actions.act_window">
+        <field name="name">Độ rộng hẻm</field>
+        <field name="res_model">dm.doronghem</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Chiều sâu lô đất -->
+    <record id="view_tree_dm_chieusau" model="ir.ui.view">
+        <field name="name">dm.chieusau.tree</field>
+        <field name="model">dm.chieusau</field>
+        <field name="arch" type="xml">
+            <tree><field name="name"/></tree>
+        </field>
+    </record>
+
+    <record id="view_form_dm_chieusau" model="ir.ui.view">
+        <field name="name">dm.chieusau.form</field>
+        <field name="model">dm.chieusau</field>
+        <field name="arch" type="xml">
+            <form string="Chiều sâu lô đất">
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dm_chieusau" model="ir.actions.act_window">
+        <field name="name">Chiều sâu lô đất</field>
+        <field name="res_model">dm.chieusau</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Kết cấu đường -->
+    <record id="view_tree_dm_ketcauduong" model="ir.ui.view">
+        <field name="name">dm.ketcauduong.tree</field>
+        <field name="model">dm.ketcauduong</field>
+        <field name="arch" type="xml">
+            <tree><field name="name"/></tree>
+        </field>
+    </record>
+
+    <record id="view_form_dm_ketcauduong" model="ir.ui.view">
+        <field name="name">dm.ketcauduong.form</field>
+        <field name="model">dm.ketcauduong</field>
+        <field name="arch" type="xml">
+            <form string="Kết cấu đường">
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dm_ketcauduong" model="ir.actions.act_window">
+        <field name="name">Kết cấu đường</field>
+        <field name="res_model">dm.ketcauduong</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Khu vực -->
+    <record id="view_tree_dm_khuvuc" model="ir.ui.view">
+        <field name="name">dm.khuvuc.tree</field>
+        <field name="model">dm.khuvuc</field>
+        <field name="arch" type="xml">
+            <tree><field name="name"/></tree>
+        </field>
+    </record>
+
+    <record id="view_form_dm_khuvuc" model="ir.ui.view">
+        <field name="name">dm.khuvuc.form</field>
+        <field name="model">dm.khuvuc</field>
+        <field name="arch" type="xml">
+            <form string="Khu vực">
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dm_khuvuc" model="ir.actions.act_window">
+        <field name="name">Khu vực</field>
+        <field name="res_model">dm.khuvuc</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Vị trí -->
+    <record id="view_tree_dm_vitri" model="ir.ui.view">
+        <field name="name">dm.vitri.tree</field>
+        <field name="model">dm.vitri</field>
+        <field name="arch" type="xml">
+            <tree><field name="name"/></tree>
+        </field>
+    </record>
+
+    <record id="view_form_dm_vitri" model="ir.ui.view">
+        <field name="name">dm.vitri.form</field>
+        <field name="model">dm.vitri</field>
+        <field name="arch" type="xml">
+            <form string="Vị trí">
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dm_vitri" model="ir.actions.act_window">
+        <field name="name">Vị trí</field>
+        <field name="res_model">dm.vitri</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_dm_root" name="Danh mục dùng chung" parent="menu_duong_root" sequence="10"/>
+    <menuitem id="menu_dm_mattienhem" name="Mặt tiền / Hẻm" parent="menu_dm_root" action="action_dm_mattienhem"/>
+    <menuitem id="menu_dm_doronghem" name="Độ rộng hẻm" parent="menu_dm_root" action="action_dm_doronghem"/>
+    <menuitem id="menu_dm_chieusau" name="Chiều sâu lô đất" parent="menu_dm_root" action="action_dm_chieusau"/>
+    <menuitem id="menu_dm_ketcauduong" name="Kết cấu đường" parent="menu_dm_root" action="action_dm_ketcauduong"/>
+    <menuitem id="menu_dm_khuvuc" name="Khu vực" parent="menu_dm_root" action="action_dm_khuvuc"/>
+    <menuitem id="menu_dm_vitri" name="Vị trí" parent="menu_dm_root" action="action_dm_vitri"/>
+
+</odoo>

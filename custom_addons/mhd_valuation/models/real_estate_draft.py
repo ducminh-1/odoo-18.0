@@ -2,7 +2,7 @@
 
 from odoo import api, fields, models, _
 from datetime import datetime, timedelta
-from .utils.haversine import haversine  # Đảm bảo import đúng
+from .utils import haversine  # Đảm bảo import đúng
 
 
 class MHDRealEstateDraft(models.Model):
@@ -144,10 +144,10 @@ class MHDRealEstateDraft(models.Model):
                 domain.append(('dacdiem_vitri_bds', 'in', ['mot_mat_tien', 'hai_mat_tien', 'ba_mat_tien']))
 
             # Chỉ lấy bản ghi có tọa độ
-            domain += [
-                ('customer_longitude', '!=', False),
-                ('customer_latitude', '!=', False)
-            ]
+            # domain += [
+            #     ('customer_longitude', '!=', False),
+            #     ('customer_latitude', '!=', False)
+            # ]
 
             # Truy vấn một lần
             properties = self.env['mhd.datalist'].search(domain, limit=300)

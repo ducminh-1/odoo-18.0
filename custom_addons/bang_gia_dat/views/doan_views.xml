@@ -1,0 +1,58 @@
+<odoo>
+  <record id="view_form_duong_giadat_doan" model="ir.ui.view">
+    <field name="name">duong.giadat.doan.form</field>
+    <field name="model">duong.giadat.doan</field>
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <button name="action_open_wizard_tao_doan_moi" type="object"
+                  string="Tạo đoạn mới từ đoạn cũ" class="btn-primary"
+                  attrs="{'invisible': [('id', '=', False)]}" />
+        </header>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="duong_id"/>
+            <field name="diem_dau"/>
+            <field name="diem_cuoi"/>
+          </group>
+          <group string="Địa giới hành chính">
+            <field name="xa_ids"/>
+            <field name="quan_id"/>
+            <field name="tinh_id"/>
+          </group>
+          <group string="Kế thừa và chỉnh sửa">
+            <field name="doan_cu_ids"/>
+            <field name="ten_ke_thua" readonly="1"/>
+            <field name="ghi_chu_chinh_sua"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_tree_duong_giadat_doan" model="ir.ui.view">
+    <field name="name">duong.giadat.doan.tree</field>
+    <field name="model">duong.giadat.doan</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="duong_id"/>
+        <field name="diem_dau"/>
+        <field name="diem_cuoi"/>
+        <field name="ten_ke_thua"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="action_duong_giadat_doan" model="ir.actions.act_window">
+    <field name="name">Đoạn đường</field>
+    <field name="res_model">duong.giadat.doan</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="menu_duong_giadat_doan"
+            name="Đoạn đường"
+            parent="menu_duong_root"
+            action="action_duong_giadat_doan"/>
+</odoo>

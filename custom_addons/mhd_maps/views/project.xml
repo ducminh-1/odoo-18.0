@@ -16,7 +16,7 @@
     <!--                <field name="activity_state"/>-->
     <!--                <progressbar field="activity_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>-->
                     <templates>
-                        <t t-name="kanban-box">
+                        <!-- <t t-name="kanban-box"> -->
                             <div t-attf-class="oe_kanban_content">
                                 <div>
                                     <strong class="o_kanban_record_title"><span>Đơn giá: <field name="dat_dongia"/> - Diện tích: <field name="dat_dientich"/> m2</span></strong>
@@ -48,7 +48,7 @@
     <!--                                </div>-->
     <!--                            </div>-->
                             </div>
-                        </t>
+                        <!-- </t> -->
                     </templates>
                 </google_map>
             </field>

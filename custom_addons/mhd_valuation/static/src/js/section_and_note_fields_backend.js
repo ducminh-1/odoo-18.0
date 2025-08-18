@@ -1,3 +1,5 @@
+/** @odoo-module */
+
 odoo.define('mhd_valuation.section_and_note_tests', function (require) {
 "use strict";
 

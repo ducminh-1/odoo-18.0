@@ -1,3 +1,5 @@
+/** @odoo-module **/
+
 odoo.define('web_google_maps.GoogleMapView', function (require) {
     'use strict';
 
