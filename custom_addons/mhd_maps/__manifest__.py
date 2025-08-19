@@ -13,7 +13,7 @@ MHD Maps
 
 Thêm chế độ xem bản đồ cho Datalist
 """,
-    'depends': ['web_google_maps', 'mhd_valuation'],
+    'depends': ['web_google_maps', 'mhd_valuation',],
     'website': '',
     'data': [
         'views/mhd_datalist_maps.xml',

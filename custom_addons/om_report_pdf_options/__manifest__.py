@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Report Options - Download, View, Print',
-    'version': '14.0.1.0.0',
+    'version': '1.0',
     'license': 'LGPL-3',
     'summary': """shows a modal window with options for printing, downloading or opening pdf reports""",
     'description': """

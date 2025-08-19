@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Message Delete",
-    "version": "14.0.1.0.1",
+    "version": "1.0",
     "category": "Discuss",
     "author": "faOtools",
     "website": "https://faotools.com/apps/14.0/message-delete-556",

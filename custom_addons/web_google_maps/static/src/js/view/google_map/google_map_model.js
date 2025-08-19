@@ -1,36 +1,18 @@
-odoo.define('web_google_maps.GoogleMapModel', function(require) {
-    'use strict';
+/** @odoo-module **/
 
-    const BasicModel = require('web.BasicModel');
+import { registry } from "@web/core/registry";
+import { AbstractModel } from "@web/views/abstract_model";
 
-    const GoogleMapModel = BasicModel.extend({
-        /**
-         * @override
-         */
-        reload: function (id, options) {
-            if (options && options.groupBy && !options.groupBy.length) {
-                options.groupBy = this.defaultGroupedBy;
-            }
-            return this._super.apply(this, arguments);
-        },
-        /**
-         * @override
-         */
-        load: function (params) {
-            this.defaultGroupedBy = params.groupBy;
-            params.groupedBy = (params.groupedBy && params.groupedBy.length) ? params.groupedBy : this.defaultGroupedBy;
-            return this._super(params);
-        },
-        /**
-         * Disable group by
-         *
-         * @override
-         */
-        _readGroup: function () {
-            return Promise.reject();
-        }
-    });
+export class GoogleMapModel extends AbstractModel {
+    async load(params) {
+        console.log("✅ GoogleMapModel.load called", params);
+        return super.load(params);
+    }
 
-    return GoogleMapModel;
+    async reload(handle, params) {
+        console.log("♻️ GoogleMapModel.reload called", handle, params);
+        return super.reload(handle, params);
+    }
+}
 
-});
+registry.category("models").add("google_map", GoogleMapModel);
